@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import { getMovieAvailability } from '../../api/tmdb-api';
+import { getMovieAvailability } from '../../api/movies-api';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 import Spinner from '../spinner'

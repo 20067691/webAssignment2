@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import PageTemplate from '../components/templateMovieListPage'
-import { getUpcomingMovies } from "../api/tmdb-api";
+import { getUpcomingMovies } from "../api/movies-api";
 import AddToWatchlistIcon from "../components/cardIcons/addToWatchList";
 import Spinner from "../components/spinner";
 import { useQuery } from "react-query";

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getMovies, getNowPlaying } from "../api/tmdb-api";
+import { getMovies, getNowPlaying } from "../api/movies-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
@@ -14,7 +14,7 @@ import TopRatedMovieCard from '../components/topRatedMovieCard';
 const HomePage = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const {  data, error, isLoading, isError, refetch }  = useQuery
-  (['discover', { page: currentPage }], getMovies);
+  ('discover', getMovies);
   const {data: releasedMovie , error: releasedError, isLoading: releasedLoading, isError: releasedIsError} = useQuery
   (['released-movies'], getNowPlaying);
   

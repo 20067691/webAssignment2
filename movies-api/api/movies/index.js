@@ -1,7 +1,7 @@
 import movieModel from './movieModel';
 import asyncHandler from 'express-async-handler';
 import express from 'express';
-import {getUpcomingMovies, getGenres, getMovies} from '../tmdb-api';
+import {getUpcomingMovies, getGenres, getMovies, getNowPlaying, getPopularPeople, getTopRatedMovie, getMovie, getMovieImages, getMovieReviews, getActorDetails, getMovieAvailability} from '../tmdb-api';
 
 const router = express.Router();
 
@@ -52,5 +52,71 @@ router.get('/tmdb/movies', asyncHandler(async (req, res) => {
     const movies = await getMovies();
     res.status(200).json(movies);
 }));
+
+router.get('/tmdb/now_playing', asyncHandler(async (req, res) => {
+    const nowPlaying = await getNowPlaying();
+    res.status(200).json(nowPlaying);
+}));
+
+router.get('/tmdb/person/popular', asyncHandler(async (req, res) => {
+    const popularPeople = await getPopularPeople();
+    res.status(200).json(popularPeople);
+}));
+
+router.get('/tmdb/movie/top_rated', asyncHandler(async (req, res) => {
+    const topRatedMovie = await getTopRatedMovie();
+    res.status(200).json(topRatedMovie);
+}));
+
+router.get('/tmdb/movie/:id', async (req, res) => {
+    const id = parseInt(req.params.id);
+    const movie = await getMovie(id);
+    if (movie) {
+        res.status(200).json(movie);
+    } else {
+        res.status(404).json({ code: 404, msg: 'Unable to find movie' });
+    }
+});
+
+
+router.get('/tmdb/movie/:id/images', async (req, res) => {
+    const id = parseInt(req.params.id);
+    const images = await getMovieImages(id);
+    if (images) {
+        res.status(200).json(images);
+    } else {
+        res.status(404).json({ code: 404, msg: 'Unable to find movie posters' });
+    }
+});
+
+router.get('/tmdb/movie/:id/reviews', async (req, res) => {
+    const id = parseInt(req.params.id);
+    const reviews = await getMovieReviews(id);
+    if (reviews) {
+        res.status(200).json(reviews);
+    } else {
+        res.status(404).json({ code: 404, msg: 'Unable to find movie reviews' });
+    }
+});
+
+router.get('/tmdb/person/:id', async (req, res) => {
+    const id = parseInt(req.params.id);
+    const person = await getActorDetails(id);
+    if (person) {
+        res.status(200).json(person);
+    } else {
+        res.status(404).json({ code: 404, msg: 'Unable to find actor details' });
+    }
+});
+
+router.get('/tmdb/movie/availability/:id', async (req, res) => {
+    const id = parseInt(req.params.id);
+    const availability = await getMovieAvailability(id);
+    if (availability) {
+        res.status(200).json(availability);
+    } else {
+        res.status(404).json({ code: 404, msg: 'Unable to find movie providers in Ireland' });
+    }
+});
 
 export default router;

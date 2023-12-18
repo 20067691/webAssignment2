@@ -10,7 +10,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import img from '../../images/pixel-art-movie-ticket-icon-for-8bit-game-on-white-background-vector.jpg'
-import { getGenres } from "../../api/tmdb-api";
+import { getGenres } from "../../api/movies-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
 import { Box } from "@mui/material";

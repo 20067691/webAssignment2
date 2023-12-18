@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
-import { getMovieReviews } from "../../api/tmdb-api";
+import { getMovieReviews } from "../../api/movies-api";
 import { excerpt } from "../../util";
 
 export default function MovieReviews({ movie }) {
@@ -15,7 +15,9 @@ export default function MovieReviews({ movie }) {
 
   useEffect(() => {
     getMovieReviews(movie.id).then((reviews) => {
-      setReviews(reviews);
+      console.log(movie.id);
+      console.log("reviews" + reviews);
+      setReviews(reviews.results);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

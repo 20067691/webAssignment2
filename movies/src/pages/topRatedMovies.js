@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
-import { getTopRatedMovie } from '../api/tmdb-api';
+import { getTopRatedMovie } from '../api/movies-api';
 import TopRatedMovieList from '../components/topRatedList';
 import { Pagination } from '@mui/material';
 import ScrollToTopButton from '../components/backToTop';

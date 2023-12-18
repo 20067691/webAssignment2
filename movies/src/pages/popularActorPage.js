@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
-import { getPopularPeople } from '../api/tmdb-api';
+import { getPopularPeople } from '../api/movies-api';
 import ActorList from '../components/actorList';
 import { Pagination } from '@mui/material';
 import ScrollToTopButton from '../components/backToTop';

@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from 'react-router-dom';
 import ActorDetails from "../components/actorDetails";
 import ScrollToTopButton from '../components/backToTop';
-import { getActorDetails } from '../api/tmdb-api'
+import { getActorDetails } from '../api/movies-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner';
 
