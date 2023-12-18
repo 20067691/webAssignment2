@@ -21,6 +21,10 @@ import { Switch } from "@mui/material";
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
+import SignUpPage from "./pages/signUpPage";
+import LoginPage from "./pages/loginPage";
+import AuthContextProvider from "./contexts/authContext";
+import ProtectedRoutes from "./protectedRoutes";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -69,6 +73,7 @@ const App = () => {
 
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
+        <AuthContextProvider>
           <SiteHeader />
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'left', paddingLeft: 20 }}>
             <FormControl component="fieldset">
@@ -85,6 +90,9 @@ const App = () => {
           </div>
           <MoviesContextProvider>
             <Routes>
+              <Route path="/signup" element={ <SignUpPage /> } />
+              <Route path="/login" element={<LoginPage />} />
+              <Route element={<ProtectedRoutes />}>
               <Route path="/movies/rated" element={<TopRatedPage />} />
               <Route path="/person/:id" element={<ActorDetailsPage />} />
               <Route path="/movies/actors" element={<PopularActorPage />} />
@@ -96,8 +104,10 @@ const App = () => {
               <Route path="/movies/:id" element={<MoviePage />} />
               <Route path="/" element={<HomePage />} />
               <Route path="*" element={<Navigate to="/" />} />
+              </Route>
             </Routes>
           </MoviesContextProvider>
+          </AuthContextProvider>
         </BrowserRouter>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

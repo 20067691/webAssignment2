@@ -11,15 +11,20 @@ import { useNavigate } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { AuthContext } from "../../contexts/authContext";
+import { useContext } from "react";
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = ({ history }) => {
+  const context = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  var menuOption = [];
   
   const navigate = useNavigate();
 
@@ -32,6 +37,11 @@ const SiteHeader = ({ history }) => {
     { label: "Rated Movies", path:"movies/rated"}
   ];
 
+  const userOptions = [
+    { label: "Login", path: "/login"},
+    { label: "Sign up", path: "/signup"}
+  ];
+
   const handleMenuSelect = (pageURL) => {
     navigate(pageURL, { replace: true });
   };
@@ -39,6 +49,10 @@ const SiteHeader = ({ history }) => {
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
+  if (context.isAuthenticated ? menuOption = menuOptions : menuOption = userOptions)
+
+  
 
   return (
     <>
@@ -76,7 +90,7 @@ const SiteHeader = ({ history }) => {
                   open={open}
                   onClose={() => setAnchorEl(null)}
                 >
-                  {menuOptions.map((opt) => (
+                  {menuOption.map((opt) => (
                     <MenuItem
                       key={opt.label}
                       onClick={() => handleMenuSelect(opt.path)}
@@ -88,7 +102,7 @@ const SiteHeader = ({ history }) => {
               </>
             ) : (
               <>
-                {menuOptions.map((opt) => (
+                {menuOption.map((opt) => (
                   <Button
                     key={opt.label}
                     color="inherit"
