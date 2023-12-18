@@ -24,8 +24,6 @@ const SiteHeader = ({ history }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  var menuOption = [];
-  
   const navigate = useNavigate();
 
   const menuOptions = [
@@ -50,9 +48,10 @@ const SiteHeader = ({ history }) => {
     setAnchorEl(event.currentTarget);
   };
 
-  if (context.isAuthenticated ? menuOption = menuOptions : menuOption = userOptions)
-
-  
+  const signOut = () => {
+    // Your signout logic here
+    context.signout();
+  };
 
   return (
     <>
@@ -62,7 +61,8 @@ const SiteHeader = ({ history }) => {
             TMDB Client
           </Typography>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            All you ever wanted to know about Movies!
+            {context.isAuthenticated ? `All ${context.userName} wanted to know about Movies!` : "All you wanted to know about Movies!"}
+            {context.isAuthenticated && <Button variant="contained" color="error" sx={{ marginLeft: 2 }} onClick={signOut}>Sign out</Button>}
           </Typography>
             {isMobile ? (
               <>
@@ -90,7 +90,14 @@ const SiteHeader = ({ history }) => {
                   open={open}
                   onClose={() => setAnchorEl(null)}
                 >
-                  {menuOption.map((opt) => (
+                  {context.isAuthenticated ? menuOptions.map((opt) => (
+                    <MenuItem
+                      key={opt.label}
+                      onClick={() => handleMenuSelect(opt.path)}
+                    >
+                      {opt.label}
+                    </MenuItem>
+                  )) : userOptions.map((opt) => (
                     <MenuItem
                       key={opt.label}
                       onClick={() => handleMenuSelect(opt.path)}
@@ -102,7 +109,15 @@ const SiteHeader = ({ history }) => {
               </>
             ) : (
               <>
-                {menuOption.map((opt) => (
+                {context.isAuthenticated ? menuOptions.map((opt) => (
+                  <Button
+                    key={opt.label}
+                    color="inherit"
+                    onClick={() => handleMenuSelect(opt.path)}
+                  >
+                    {opt.label}
+                  </Button>
+                )) : userOptions.map((opt) => (
                   <Button
                     key={opt.label}
                     color="inherit"

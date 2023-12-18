@@ -49,7 +49,8 @@ router.get('/tmdb/genres', asyncHandler(async (req, res) => {
 }));
 
 router.get('/tmdb/movies', asyncHandler(async (req, res) => {
-    const movies = await getMovies();
+    const page = req.query.page || 1;
+    const movies = await getMovies(page);
     res.status(200).json(movies);
 }));
 
