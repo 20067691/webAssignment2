@@ -24,7 +24,8 @@ const SignUpPage = props => {
   }
 
   return (
-    <>
+    <div style={{ display: 'flex', justifyContent: 'center',  minHeight: '100vh', marginBottom: '20px' }}>
+            <div>
       <h2>SignUp page</h2>
       <p>You must register a username and password to log in </p>
       <input value={userName} placeholder="user name" onChange={e => {
@@ -38,7 +39,8 @@ const SignUpPage = props => {
       }}></input><br />
       {/* Login web form  */}
       <button onClick={register}>Register</button>
-    </>
+    </div>
+    </div>
   );
 };
 
