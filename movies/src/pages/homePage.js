@@ -14,7 +14,7 @@ import TopRatedMovieCard from '../components/topRatedMovieCard';
 const HomePage = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const {  data, error, isLoading, isError, refetch }  = useQuery
-  ('discover', getMovies);
+  (['discover', { page: currentPage }], getMovies);
   const {data: releasedMovie , error: releasedError, isLoading: releasedLoading, isError: releasedIsError} = useQuery
   (['released-movies'], getNowPlaying);
   
