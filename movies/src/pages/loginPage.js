@@ -3,15 +3,18 @@ import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from '../contexts/authContext';
 import { Link } from "react-router-dom";
 import img from '../images/cyperpunk.gif';
+import { Typography } from '@mui/material';
 
 const LoginPage = props => {
     const context = useContext(AuthContext);
 
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState(""); // Added state for error message
 
     const login = () => {
         context.authenticate(userName, password);
+        setErrorMessage("Wrong username or password");
     };
 
     let location = useLocation();
@@ -29,7 +32,11 @@ const LoginPage = props => {
             <img src={img} alt="Cyperpunk gif" style={{ width: '400px', height: '300px', marginBottom: '20px' }} />
             <div>
                 <h2>Login page</h2>
-                <p>You must log in to view the protected pages </p>
+                {errorMessage && (
+                    <Typography color="error" variant="subtitle1" gutterBottom>
+                        {errorMessage}
+                    </Typography>
+                )}
                 <input
                     id="username"
                     placeholder="user name"
