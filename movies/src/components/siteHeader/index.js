@@ -16,6 +16,7 @@ import { useContext } from "react";
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
+
 const SiteHeader = ({ history }) => {
   const context = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = useState(null);

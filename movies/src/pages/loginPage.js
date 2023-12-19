@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from '../contexts/authContext';
 import { Link } from "react-router-dom";
+import img from '../images/cyperpunk.gif';
 
 const LoginPage = props => {
     const context = useContext(AuthContext);
@@ -15,7 +16,7 @@ const LoginPage = props => {
 
     let location = useLocation();
 
-    // Set 'from' to path where the browser is redirected after a successful login - either / or the protected path the user requested
+    // Set 'from' to the path where the browser is redirected after a successful login - either / or the protected path the user requested
     const { from } = location.state ? { from: location.state.from.pathname } : { from: "/" };
 
     if (context.isAuthenticated === true) {
@@ -23,7 +24,9 @@ const LoginPage = props => {
     }
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center',  minHeight: '100vh', marginBottom: '20px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100vh' }}>
+            {/* Displaying the square image above the login form */}
+            <img src={img} alt="Cyperpunk gif" style={{ width: '400px', height: '300px', marginBottom: '20px' }} />
             <div>
                 <h2>Login page</h2>
                 <p>You must log in to view the protected pages </p>
