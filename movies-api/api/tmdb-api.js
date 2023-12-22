@@ -1,9 +1,9 @@
 import fetch from 'node-fetch';
 
-export const getUpcomingMovies = async () => {
+export const getUpcomingMovies = async (page) => {
     try {
         const response = await fetch(
-            `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.TMDB_KEY}&language=en-US&page=1`
+            `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.TMDB_KEY}&language=en-US&page=${page}`
         );
 
         if (!response.ok) {
@@ -65,10 +65,10 @@ export const getNowPlaying = async () => {
     }
 };
 
-export const getPopularPeople = async () => {
+export const getPopularPeople = async (page) => {
     try {
         const response = await fetch(
-            `https://api.themoviedb.org/3/person/popular?api_key=${process.env.TMDB_KEY}&language=en-US`
+            `https://api.themoviedb.org/3/person/popular?api_key=${process.env.TMDB_KEY}&language=en-US&page=${page}`
         );
 
         if (!response.ok) {
@@ -81,10 +81,10 @@ export const getPopularPeople = async () => {
     }
 };
 
-export const getTopRatedMovie = async () => {
+export const getTopRatedMovie = async (page) => {
     try {
         const response = await fetch(
-            `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.TMDB_KEY}`
+            `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.TMDB_KEY}&page=${page}`
         );
 
         if (!response.ok) {

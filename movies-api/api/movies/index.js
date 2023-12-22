@@ -38,7 +38,8 @@ router.get('/:id', asyncHandler(async (req, res) => {
 }));
 
 router.get('/tmdb/upcoming', asyncHandler(async (req, res) => {
-    const upcomingMovies = await getUpcomingMovies();
+    const page = req.query.page || 1;
+    const upcomingMovies = await getUpcomingMovies(page);
     res.status(200).json(upcomingMovies);
 }));
 
@@ -60,12 +61,14 @@ router.get('/tmdb/now_playing', asyncHandler(async (req, res) => {
 }));
 
 router.get('/tmdb/person/popular', asyncHandler(async (req, res) => {
-    const popularPeople = await getPopularPeople();
+    const page = req.query.page || 1;
+    const popularPeople = await getPopularPeople(page);
     res.status(200).json(popularPeople);
 }));
 
 router.get('/tmdb/movie/top_rated', asyncHandler(async (req, res) => {
-    const topRatedMovie = await getTopRatedMovie();
+    const page = req.query.page || 1;
+    const topRatedMovie = await getTopRatedMovie(page);
     res.status(200).json(topRatedMovie);
 }));
 

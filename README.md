@@ -38,16 +38,17 @@ Give an overview of your web API design, perhaps similar to the following:
 - /api/movies/{movieid}/reviews | GET | Get all reviews for movie 
 - /api/movies/{movieid}/reviews | POST | Create a new review for Movie 
 
-If you have your API design on an online platform or graphic, please link to it (e.g. [Swaggerhub](https://app.swaggerhub.com/)).
+
 
 ## Security and Authentication
 
-Give details of authentication/security implemented on the API (e.g. passport/sessions). Indicate which routes are protected.
++ Protected Routes 
++ Hashing and salting of passwords in the database
++ JSON Web tokens 
+
+
 
 ## Integrating with React App
 
 Describe how you integrated your React app with the API. List the views that use your Web API instead of the TMDB API. Describe any other updates to the React app from Assignment One.
 
-## Independent learning (if relevant)
-
-Briefly explain any non-standard features developed for the app.

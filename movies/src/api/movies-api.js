@@ -22,9 +22,11 @@ export const getMovies = async (args) => {
     return response.json();
   };
 
-  export const getUpcomingMovies = async () => {
+  export const getUpcomingMovies = async (args) => {
+    const [, idPart] = args.queryKey;
+    const { page } = idPart;
     const response = await fetch(
-      'http://localhost:8080/api/movies/tmdb/upcoming', {
+      `http://localhost:8080/api/movies/tmdb/upcoming?page=${page}`, {
       headers: {
         'Authorization': window.localStorage.getItem('token')
       }
@@ -44,9 +46,11 @@ export const getMovies = async (args) => {
     return response.json();
   };
 
-  export const getPopularPeople = async () => {
+  export const getPopularPeople = async (args) => {
+    const [, idPart] = args.queryKey;
+    const { page } = idPart;
     const response = await fetch(
-      'http://localhost:8080/api/movies/tmdb/person/popular', {
+      `http://localhost:8080/api/movies/tmdb/person/popular?page=${page}`, {
       headers: {
         'Authorization': window.localStorage.getItem('token')
       }
@@ -55,9 +59,11 @@ export const getMovies = async (args) => {
     return response.json();
   };
 
-  export const getTopRatedMovie = async () => {
+  export const getTopRatedMovie = async (args) => {
+    const [, idPart] = args.queryKey;
+    const { page } = idPart;
     const response = await fetch(
-      'http://localhost:8080/api/movies/tmdb/movie/top_rated', {
+      `http://localhost:8080/api/movies/tmdb/movie/top_rated?page=${page}`, {
       headers: {
         'Authorization': window.localStorage.getItem('token')
       }
